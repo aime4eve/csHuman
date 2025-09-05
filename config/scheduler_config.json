@@ -1,0 +1,72 @@
+{
+  "scheduled_update": {
+    "enabled": true,
+    "interval_hours": 6,
+    "time": "02:00",
+    "description": "定时更新配置：每6小时或每天凌晨2点执行"
+  },
+  "file_watch": {
+    "enabled": true,
+    "debounce_seconds": 30,
+    "description": "文件监控配置：检测到文件变更后30秒防抖动延迟"
+  },
+  "update_strategy": {
+    "batch_size": 100,
+    "max_concurrent_updates": 3,
+    "retry_attempts": 3,
+    "retry_delay_seconds": 5,
+    "description": "更新策略：批处理大小、并发数、重试机制"
+  },
+  "performance": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "embedding_batch_size": 32,
+    "max_memory_usage_mb": 2048,
+    "description": "性能配置：文档分块、嵌入批处理、内存限制"
+  },
+  "logging": {
+    "enabled": true,
+    "log_file": "logs/update_scheduler.log",
+    "log_level": "INFO",
+    "max_log_size_mb": 100,
+    "backup_count": 5,
+    "description": "日志配置：日志文件、级别、轮转策略"
+  },
+  "monitoring": {
+    "enabled": true,
+    "metrics_file": "logs/update_metrics.json",
+    "alert_thresholds": {
+      "update_duration_seconds": 300,
+      "error_rate_percent": 10,
+      "memory_usage_percent": 80
+    },
+    "description": "监控配置：性能指标、告警阈值"
+  },
+  "backup": {
+    "enabled": true,
+    "backup_before_update": true,
+    "backup_directory": "backups",
+    "max_backups": 10,
+    "compress_backups": true,
+    "description": "备份配置：更新前备份、备份目录、保留策略"
+  },
+  "filters": {
+    "include_patterns": [
+      "*.md",
+      "*.pdf",
+      "*.docx",
+      "*.doc"
+    ],
+    "exclude_patterns": [
+      ".*",
+      "*~",
+      "*.tmp",
+      "*.bak",
+      "node_modules/**",
+      ".git/**"
+    ],
+    "min_file_size_bytes": 10,
+    "max_file_size_mb": 50,
+    "description": "文件过滤：包含/排除模式、文件大小限制"
+  }
+}
