@@ -4,10 +4,10 @@
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![License](https://img.shields.io/badge/License-Apache--2.0-yellow.svg)
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)
 
-**基于RAG技术的企业级智能问答系统**
+**基于RAG+LoRA技术的智能客服数字人系统**
 
 [快速开始](#快速开始) • [功能特性](#功能特性) • [文档](#文档) • [API接口](#api接口) • [贡献指南](#贡献指南)
 
@@ -17,7 +17,7 @@
 
 ## 🎯 项目概述
 
-智能问答系统是一个基于检索增强生成（RAG）技术的企业级知识问答平台。系统能够理解自然语言问题，从企业知识库中检索相关信息，并生成准确、有用的答案。
+csHuman（客服数字人）是一个基于检索增强生成（RAG）与LoRA微调技术的企业级智能客服平台。系统能够理解自然语言问题，从企业知识库中检索相关信息，并通过微调后的大语言模型生成准确、有用的答案。
 
 ### 🌟 核心优势
 
@@ -101,7 +101,7 @@ graph TB
 
 2. **克隆项目并安装依赖**
    ```bash
-   git clone <项目地址>
+   git clone https://github.com/aime4eve/csHuman.git
    cd csHuman
    python -m venv venv
    source venv/bin/activate  # Windows: venv\Scripts\activate
@@ -277,7 +277,7 @@ tail -f logs/app.log
 ## 📁 项目结构
 
 ```
-hkt_szr_rag/
+csHuman/
 ├── app/                    # 标准RAG应用
 │   ├── main.py            # FastAPI应用入口
 │   ├── rag_handler.py     # RAG处理器
@@ -471,7 +471,7 @@ mypy app/
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目采用 Apache License 2.0 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ---
 
@@ -489,10 +489,10 @@ mypy app/
 
 ## 📞 联系我们
 
-- **项目主页**: [GitHub Repository]
-- **问题反馈**: [GitHub Issues]
-- **技术支持**: [技术支持邮箱]
-- **文档网站**: [在线文档]
+- **项目主页**: [GitHub Repository](https://github.com/aime4eve/csHuman)
+- **问题反馈**: [GitHub Issues](https://github.com/aime4eve/csHuman/issues)
+- **技术支持**: 伍志勇
+- **文档网站**: [在线文档](https://github.com/aime4eve/csHuman/tree/main/docs)
 
 ---
 

@@ -64,7 +64,7 @@
 ## 📁 文件结构
 
 ```
-hkt_szr_rag/
+csHuman/
 ├── app/
 │   ├── __init__.py
 │   ├── main.py                 # 原始 RAG API

@@ -59,7 +59,7 @@ ollama pull nomic-embed-text
 ```bash
 # 1. 克隆项目
 git clone <项目地址>
-cd hkt_szr_rag
+cd csHuman
 
 # 2. 创建虚拟环境
 python -m venv venv

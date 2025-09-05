@@ -134,7 +134,7 @@ ollama pull nomic-embed-text
 #### 克隆项目
 ```bash
 git clone <项目地址>
-cd hkt_szr_rag
+cd csHuman
 ```
 
 #### 创建虚拟环境
@@ -760,7 +760,7 @@ cat .env
 python scripts/finetune_with_custom_cache.py
 
 # 或直接使用绝对路径
-python E:\knowledge\src\hkt_szr_rag\scripts\finetune_lora.py
+python E:\knowledge\src\csHuman\scripts\finetune_lora.py
 ```
 
 #### 3. CPU环境下训练失败
