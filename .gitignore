@@ -1,46 +1,24 @@
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.egg-info/
-*.egg
-
-# Virtualenv & tools
-.venv/
-venv/
-.env
-.env.*
-*.env
-.cache/
-.logs/
-.idea/
-.vscode/
+# Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Project outputs (ignored for lightweight repo)
-incremental_lora_output/
-quick_lora_output/
-trainer_output/
-lora_adapters/
-simulated_cache/
-vector_store/
+node_modules
+dist
+dist-ssr
+*.local
 
-# Large model & binary artifacts
-*.safetensors
-*.pt
-*.bin
-*.faiss
-*.pkl
-*.pickle
-*.npz
-*.npy
-*.onnx
-*.zip
-*.7z
-*.tar
-*.tar.gz
-
-# OS files
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,119 @@
+# 企业级知识库管理系统 - Docker Compose配置
+# @author 伍志勇
+# 用于本地开发和测试环境部署
+
+version: '3.8'
+
+services:
+  # 前端应用服务
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    container_name: knowledge-frontend
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_BASE_URL=http://backend:8080
+      - VITE_APP_TITLE=企业级知识库管理系统
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - backend
+    networks:
+      - knowledge-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # 后端API服务 (占位符，实际需要根据后端配置调整)
+  backend:
+    image: openjdk:17-jdk-alpine
+    container_name: knowledge-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/knowledge_db
+      - SPRING_DATASOURCE_USERNAME=knowledge_user
+      - SPRING_DATASOURCE_PASSWORD=knowledge_pass
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - knowledge-network
+    restart: unless-stopped
+    command: |
+      sh -c '
+        echo "Backend service placeholder - 需要实际的Spring Boot应用"
+        sleep infinity
+      '
+
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: knowledge-postgres
+    environment:
+      - POSTGRES_DB=knowledge_db
+      - POSTGRES_USER=knowledge_user
+      - POSTGRES_PASSWORD=knowledge_pass
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - knowledge-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledge_user -d knowledge_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: knowledge-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - knowledge-network
+    restart: unless-stopped
+    command: redis-server /usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+# 网络配置
+networks:
+  knowledge-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# 数据卷配置
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  nginx_logs:
+    driver: local

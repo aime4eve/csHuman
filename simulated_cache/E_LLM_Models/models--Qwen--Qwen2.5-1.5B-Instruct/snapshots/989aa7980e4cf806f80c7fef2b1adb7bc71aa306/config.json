@@ -1,0 +1,12 @@
+{
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "model_type": "qwen2",
+  "hidden_size": 1536,
+  "num_hidden_layers": 28,
+  "num_attention_heads": 12,
+  "vocab_size": 151936,
+  "torch_dtype": "float32",
+  "transformers_version": "4.51.1"
+}

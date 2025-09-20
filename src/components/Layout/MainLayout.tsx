@@ -28,6 +28,8 @@ import {
 } from '@ant-design/icons';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useGlobalStore } from '../../store';
+import { useNotifications } from '../../hooks/useNotifications';
+import NotificationDropdown from '../Notification/NotificationDropdown';
 
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
@@ -39,6 +41,7 @@ const MainLayout: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { collapsed, setCollapsed, user, setUser, setAuthenticated } = useGlobalStore();
+  const { stats } = useNotifications();
 
   // 菜单项配置
   const menuItems = [
@@ -263,9 +266,11 @@ const MainLayout: React.FC = () => {
           
           <Space size="middle">
             {/* 通知铃铛 */}
-            <Badge count={5} size="small">
-              <Button type="text" icon={<BellOutlined />} size="large" />
-            </Badge>
+            <NotificationDropdown>
+              <Badge count={stats.unread} size="small">
+                <Button type="text" icon={<BellOutlined />} size="large" />
+              </Badge>
+            </NotificationDropdown>
             
             {/* 用户信息 */}
             <Dropdown

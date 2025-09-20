@@ -1,0 +1,261 @@
+# 建筑管理服务 Docker Compose 配置
+# 作者: 伍志勇
+# 创建时间: 2025年1月27日 15:30:00
+# 用于本地开发环境的容器编排
+
+version: '3.8'
+
+services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:13-alpine
+    container_name: building-postgres
+    environment:
+      POSTGRES_DB: mclimate_building
+      POSTGRES_USER: mclimate
+      POSTGRES_PASSWORD: mclimate123
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mclimate -d mclimate_building"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis 缓存
+  redis:
+    image: redis:6-alpine
+    container_name: building-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes
+
+  # Zookeeper (Kafka依赖)
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.1
+    container_name: building-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Kafka 消息队列
+  kafka:
+    image: confluentinc/cp-kafka:7.0.1
+    container_name: building-kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  # Eureka 服务注册中心
+  eureka:
+    image: springcloud/eureka:latest
+    container_name: building-eureka
+    ports:
+      - "8761:8761"
+    environment:
+      EUREKA_CLIENT_REGISTER_WITH_EUREKA: 'false'
+      EUREKA_CLIENT_FETCH_REGISTRY: 'false'
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://localhost:8761/eureka/
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 建筑管理服务
+  building-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: building-service
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      eureka:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      # 数据库配置
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: mclimate_building
+      DB_USERNAME: mclimate
+      DB_PASSWORD: mclimate123
+      
+      # Redis配置
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      
+      # Kafka配置
+      KAFKA_SERVERS: kafka:9092
+      
+      # Eureka配置
+      EUREKA_SERVER: http://eureka:8761/eureka/
+      
+      # JVM配置
+      JAVA_OPTS: "-Xms512m -Xmx1024m -XX:+UseG1GC"
+      
+      # 应用配置
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8081
+      
+      # 日志配置
+      LOGGING_LEVEL_ROOT: INFO
+      LOGGING_LEVEL_COM_MCLIMATE: DEBUG
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/building-service/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Nginx 负载均衡器
+  nginx:
+    image: nginx:alpine
+    container_name: building-nginx
+    depends_on:
+      - building-service
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Prometheus 监控
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: building-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Grafana 可视化
+  grafana:
+    image: grafana/grafana:latest
+    container_name: building-grafana
+    depends_on:
+      - prometheus
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin123
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    networks:
+      - building-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  building-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# 开发环境快速启动命令:
+# docker-compose up -d postgres redis kafka eureka
+# docker-compose up building-service
+#
+# 完整环境启动命令:
+# docker-compose up -d
+#
+# 查看日志:
+# docker-compose logs -f building-service
+#
+# 停止服务:
+# docker-compose down
+#
+# 清理数据:
+# docker-compose down -v

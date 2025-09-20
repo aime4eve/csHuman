@@ -86,50 +86,13 @@ import {
 } from '@ant-design/icons';
 import type { DataNode } from 'antd/es/tree';
 import type { ColumnsType } from 'antd/es/table';
+import GraphVisualization from '../../components/GraphVisualization';
+import { GraphNode, GraphRelation, GraphData, PathResult, NODE_TYPE_COLORS, NODE_TYPE_NAMES } from '../../types/graph';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 const { Option } = Select;
 const { Search } = Input;
-
-// 图谱节点类型定义
-interface GraphNode {
-  id: string;
-  name: string;
-  type: 'person' | 'organization' | 'concept' | 'document' | 'process' | 'system';
-  properties: Record<string, any>;
-  description?: string;
-  x?: number;
-  y?: number;
-  size?: number;
-  color?: string;
-}
-
-// 图谱关系类型定义
-interface GraphRelation {
-  id: string;
-  source: string;
-  target: string;
-  type: string;
-  properties: Record<string, any>;
-  weight: number;
-  label?: string;
-}
-
-// 图谱数据类型定义
-interface GraphData {
-  nodes: GraphNode[];
-  relations: GraphRelation[];
-}
-
-// 路径查询结果类型定义
-interface PathResult {
-  id: string;
-  path: string[];
-  relations: string[];
-  distance: number;
-  confidence: number;
-}
 
 // 模拟图谱数据
 const mockGraphData: GraphData = {
@@ -257,14 +220,7 @@ const KnowledgeGraphPage: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   // 节点类型颜色映射
-  const nodeTypeColors = {
-    person: '#1677FF',
-    organization: '#52C41A',
-    concept: '#FA8C16',
-    document: '#722ED1',
-    process: '#EB2F96',
-    system: '#13C2C2'
-  };
+  const nodeTypeColors = NODE_TYPE_COLORS;
 
   // 搜索节点
   const handleSearch = (value: string) => {
@@ -509,41 +465,25 @@ const KnowledgeGraphPage: React.FC = () => {
                     overflow: 'hidden'
                   }}
                 >
-                  {/* 模拟图谱可视化区域 */}
-                  <div style={{ 
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{ marginBottom: 16 }}>
-                      {filteredNodes.map((node, index) => (
-                        <div
-                          key={node.id}
-                          style={{
-                            display: 'inline-block',
-                            margin: '8px',
-                            padding: '8px 12px',
-                            background: nodeTypeColors[node.type],
-                            color: 'white',
-                            borderRadius: '50px',
-                            cursor: 'pointer',
-                            fontSize: 12,
-                            fontWeight: 'bold',
-                            transform: `translate(${(index % 3 - 1) * 120}px, ${Math.floor(index / 3) * 80 - 40}px)`,
-                            transition: 'all 0.3s ease'
-                          }}
-                          onClick={() => handleNodeClick(node)}
-                        >
-                          {node.name}
-                        </div>
-                      ))}
-                    </div>
-                    <Text type="secondary">
-                      点击节点查看详情 | 拖拽节点调整位置 | 滚轮缩放视图
-                    </Text>
-                  </div>
+                  {/* SVG图谱可视化组件 */}
+                  <GraphVisualization
+                    data={{
+                      nodes: filteredNodes,
+                      relations: graphData.relations.filter(rel => 
+                        filteredNodes.some(n => n.id === rel.source) && 
+                        filteredNodes.some(n => n.id === rel.target)
+                      )
+                    }}
+                    width={canvasRef.current?.clientWidth || 800}
+                    height={600}
+                    nodeSize={nodeSize}
+                    showLabels={showLabels}
+                    layoutType={layoutType as any}
+                    onNodeClick={handleNodeClick}
+                    onNodeHover={(node) => {
+                      // 可以在这里添加悬停效果
+                    }}
+                  />
                 </div>
               </Card>
             </Col>
@@ -595,21 +535,17 @@ const KnowledgeGraphPage: React.FC = () => {
           <Divider />
           
           <div>
-            <Text strong>节点类型说明</Text>
-            <div style={{ marginTop: 8 }}>
-              {Object.entries(nodeTypeColors).map(([type, color]) => (
-                <div key={type} style={{ marginBottom: 4 }}>
-                  <Tag color={color} style={{ minWidth: 60 }}>
-                    {type === 'system' ? '系统' :
-                     type === 'concept' ? '概念' :
-                     type === 'process' ? '流程' :
-                     type === 'person' ? '人员' :
-                     type === 'organization' ? '组织' : '文档'}
-                  </Tag>
-                </div>
-              ))}
+              <Text strong>节点类型说明</Text>
+              <div style={{ marginTop: 8 }}>
+                {Object.entries(nodeTypeColors).map(([type, color]) => (
+                  <div key={type} style={{ marginBottom: 4 }}>
+                    <Tag color={color} style={{ minWidth: 60 }}>
+                      {NODE_TYPE_NAMES[type as keyof typeof NODE_TYPE_NAMES]}
+                    </Tag>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
         </Space>
       </Drawer>
 
@@ -643,11 +579,7 @@ const KnowledgeGraphPage: React.FC = () => {
               </div>
               <Title level={4}>{selectedNode.name}</Title>
               <Tag color={nodeTypeColors[selectedNode.type]}>
-                {selectedNode.type === 'system' ? '系统' :
-                 selectedNode.type === 'concept' ? '概念' :
-                 selectedNode.type === 'process' ? '流程' :
-                 selectedNode.type === 'person' ? '人员' :
-                 selectedNode.type === 'organization' ? '组织' : '文档'}
+                {NODE_TYPE_NAMES[selectedNode.type]}
               </Tag>
             </div>
             

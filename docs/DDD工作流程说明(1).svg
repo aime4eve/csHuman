@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1400"
+   height="1600"
+   version="1.1"
+   id="svg132"
+   sodipodi:docname="DDD工作流程说明(1).svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview132"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.509375"
+     inkscape:cx="-77.546012"
+     inkscape:cy="440.7362"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg132" />
+  <defs
+     id="defs6">
+    <filter
+       id="shadow"
+       x="-0.0011538462"
+       y="-0.0125"
+       width="1.0023077"
+       height="1.025">
+      <feDropShadow
+         dx="3"
+         dy="3"
+         stdDeviation="2"
+         flood-color="#00000020" />
+    </filter>
+    <linearGradient
+       id="businessGradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#FF6B6B;stop-opacity:1"
+         id="stop1" />
+      <stop
+         offset="100%"
+         style="stop-color:#4ECDC4;stop-opacity:1"
+         id="stop2" />
+    </linearGradient>
+    <linearGradient
+       id="dddGradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#45B7D1;stop-opacity:1"
+         id="stop3" />
+      <stop
+         offset="100%"
+         style="stop-color:#96CEB4;stop-opacity:1"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="solutionGradient"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         style="stop-color:#9C27B0;stop-opacity:1"
+         id="stop5" />
+      <stop
+         offset="100%"
+         style="stop-color:#E91E63;stop-opacity:1"
+         id="stop6" />
+    </linearGradient>
+  </defs>
+  <!-- 标题 -->
+  <rect
+     x="50"
+     y="20"
+     width="1300"
+     height="80"
+     fill="url(#businessGradient)"
+     rx="15"
+     filter="url(#shadow)"
+     id="rect6" />
+  <text
+     x="700"
+     y="50"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="28"
+     font-weight="bold"
+     fill="white"
+     text-anchor="middle"
+     id="text6">
+    DDD工作模式：从客户痛点到价值实现的完整解决方案
+  </text>
+  <text
+     x="700"
+     y="80"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="16"
+     fill="white"
+     text-anchor="middle"
+     id="text7">
+    Domain-Driven Design 让技术真正服务于商业价值创造
+  </text>
+  <!-- 商业模式核心逻辑 -->
+  <rect
+     x="50"
+     y="120"
+     width="1300"
+     height="120"
+     fill="#FFF8E1"
+     stroke="#FF9800"
+     stroke-width="3"
+     rx="15"
+     filter="url(#shadow)"
+     id="rect7" />
+  <text
+     x="700"
+     y="150"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="20"
+     font-weight="bold"
+     fill="#E65100"
+     text-anchor="middle"
+     id="text8">
+    工作模式核心逻辑：客户需求 → DDD解决方案 → 商业价值
+  </text>
+  <!-- 客户需求分析 -->
+  <rect
+     x="80"
+     y="170"
+     width="380"
+     height="60"
+     fill="#FFEBEE"
+     stroke="#E91E63"
+     stroke-width="2"
+     rx="10"
+     id="rect8" />
+  <text
+     x="270"
+     y="190"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="16"
+     font-weight="bold"
+     fill="#C2185B"
+     text-anchor="middle"
+     id="text9">
+    客户需要什么？
+  </text>
+  <text
+     x="90"
+     y="210"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="#666"
+     id="text10">
+    • 复杂业务逻辑难以管理  • 系统维护成本高昂  • 业务变化响应缓慢
+  </text>
+  <text
+     x="90"
+     y="225"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="#666"
+     id="text11">
+    • 技术债务积累严重  • 团队协作效率低下  • 系统扩展性不足
+  </text>
+  <!-- DDD解决方案 -->
+  <rect
+     x="510"
+     y="170"
+     width="380"
+     height="60"
+     fill="url(#solutionGradient)"
+     rx="10"
+     id="rect11" />
+  <text
+     x="700"
+     y="190"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="16"
+     font-weight="bold"
+     fill="white"
+     text-anchor="middle"
+     id="text12">
+    DDD如何解决？
+  </text>
+  <text
+     x="520"
+     y="210"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="white"
+     id="text13">
+    • 领域建模让业务逻辑清晰可见  • 分层架构降低维护成本
+  </text>
+  <text
+     x="520"
+     y="225"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="white"
+     id="text14">
+    • 有界上下文提升响应速度  • 聚合设计保证数据一致性
+  </text>
+  <!-- 商业价值实现 -->
+  <rect
+     x="940"
+     y="170"
+     width="380"
+     height="60"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="2"
+     rx="10"
+     id="rect14" />
+  <text
+     x="1130"
+     y="190"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="16"
+     font-weight="bold"
+     fill="#2E7D32"
+     text-anchor="middle"
+     id="text15">
+    实现什么价值？
+  </text>
+  <text
+     x="950"
+     y="210"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="#666"
+     id="text16">
+    • 开发效率提升30-50%  • 维护成本降低40-60%  • 上线周期缩短50%
+  </text>
+  <text
+     x="950"
+     y="225"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     fill="#666"
+     id="text17">
+    • 系统稳定性提升  • 团队协作效率翻倍  • 业务创新能力增强
+  </text>
+  <!-- DDD核心价值主张 -->
+  <rect
+     x="50"
+     y="260"
+     width="1300"
+     height="80"
+     fill="url(#dddGradient)"
+     rx="15"
+     filter="url(#shadow)"
+     id="rect17" />
+  <text
+     x="700"
+     y="285"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="white"
+     text-anchor="middle"
+     id="text18">
+    DDD的核心价值主张：让软件系统成为业务知识的数字化载体
+  </text>
+  <text
+     x="700"
+     y="310"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     fill="white"
+     text-anchor="middle"
+     id="text19">
+    通过深度理解业务领域，构建与业务高度契合的软件架构，实现技术与业务的完美融合
+  </text>
+  <text
+     x="700"
+     y="330"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     fill="white"
+     text-anchor="middle"
+     id="text20">
+    让代码说业务语言，让架构反映业务结构，让系统支撑业务创新
+  </text>
+  <!-- 第一阶段：深度业务理解 -->
+  <rect
+     x="50"
+     y="360"
+     width="1300"
+     height="140"
+     fill="#FFF3E0"
+     stroke="#FF9800"
+     stroke-width="2"
+     rx="10"
+     filter="url(#shadow)"
+     id="rect20" />
+  <text
+     x="70"
+     y="385"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="#E65100"
+     id="text21">
+    阶段一：深度业务理解 - 挖掘真正的客户需求
+  </text>
+  <rect
+     x="80"
+     y="400"
+     width="300"
+     height="90"
+     fill="#FFEBEE"
+     stroke="#E91E63"
+     stroke-width="1"
+     rx="8"
+     id="rect21" />
+  <text
+     x="90"
+     y="420"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#C2185B"
+     id="text22">
+    客户痛点深度挖掘
+  </text>
+  <text
+     x="90"
+     y="440"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text23">
+    • 业务专家深度访谈
+  </text>
+  <text
+     x="90"
+     y="455"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text24">
+    • 现有系统痛点分析
+  </text>
+  <text
+     x="90"
+     y="470"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text25">
+    • 业务流程瓶颈识别
+  </text>
+  <text
+     x="90"
+     y="485"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text26">
+    • 隐性需求挖掘
+  </text>
+  <rect
+     x="400"
+     y="400"
+     width="300"
+     height="90"
+     fill="#F3E5F5"
+     stroke="#9C27B0"
+     stroke-width="1"
+     rx="8"
+     id="rect26" />
+  <text
+     x="410"
+     y="420"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#7B1FA2"
+     id="text27">
+    事件风暴工作坊
+  </text>
+  <text
+     x="410"
+     y="440"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text28">
+    • 领域事件识别
+  </text>
+  <text
+     x="410"
+     y="455"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text29">
+    • 业务规则发现
+  </text>
+  <text
+     x="410"
+     y="470"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text30">
+    • 领域概念统一
+  </text>
+  <text
+     x="410"
+     y="485"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text31">
+    • 业务边界划分
+  </text>
+  <rect
+     x="720"
+     y="400"
+     width="300"
+     height="90"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="1"
+     rx="8"
+     id="rect31" />
+  <text
+     x="730"
+     y="420"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#2E7D32"
+     id="text32">
+    商业价值评估
+  </text>
+  <text
+     x="730"
+     y="440"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text33">
+    • 解决方案ROI分析
+  </text>
+  <text
+     x="730"
+     y="455"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text34">
+    • 市场机会评估
+  </text>
+  <text
+     x="730"
+     y="470"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text35">
+    • 竞争优势分析
+  </text>
+  <text
+     x="730"
+     y="485"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text36">
+    • 风险评估与规避
+  </text>
+  <rect
+     x="1040"
+     y="400"
+     width="280"
+     height="90"
+     fill="#E3F2FD"
+     stroke="#2196F3"
+     stroke-width="1"
+     rx="8"
+     id="rect36" />
+  <text
+     x="1050"
+     y="420"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#1565C0"
+     id="text37">
+    通用语言建立
+  </text>
+  <text
+     x="1050"
+     y="440"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text38">
+    • 业务术语统一
+  </text>
+  <text
+     x="1050"
+     y="455"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text39">
+    • 概念模型构建
+  </text>
+  <text
+     x="1050"
+     y="470"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text40">
+    • 沟通效率提升
+  </text>
+  <text
+     x="1050"
+     y="485"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text41">
+    • 知识传承保障
+  </text>
+  <!-- 第二阶段：领域驱动设计 -->
+  <rect
+     x="50"
+     y="520"
+     width="1300"
+     height="140"
+     fill="#F1F8E9"
+     stroke="#8BC34A"
+     stroke-width="2"
+     rx="10"
+     filter="url(#shadow)"
+     id="rect41" />
+  <text
+     x="70"
+     y="545"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="#33691E"
+     id="text42">
+    阶段二：领域驱动设计 - 构建契合业务的解决方案架构
+  </text>
+  <rect
+     x="80"
+     y="560"
+     width="300"
+     height="90"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="1"
+     rx="8"
+     id="rect42" />
+  <text
+     x="90"
+     y="580"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#2E7D32"
+     id="text43">
+    领域建模设计
+  </text>
+  <text
+     x="90"
+     y="600"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text44">
+    • 核心领域识别
+  </text>
+  <text
+     x="90"
+     y="615"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text45">
+    • 聚合根设计
+  </text>
+  <text
+     x="90"
+     y="630"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text46">
+    • 实体与值对象定义
+  </text>
+  <text
+     x="90"
+     y="645"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text47">
+    • 领域服务抽象
+  </text>
+  <rect
+     x="400"
+     y="560"
+     width="300"
+     height="90"
+     fill="#E3F2FD"
+     stroke="#2196F3"
+     stroke-width="1"
+     rx="8"
+     id="rect47" />
+  <text
+     x="410"
+     y="580"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#1565C0"
+     id="text48">
+    架构边界设计
+  </text>
+  <text
+     x="410"
+     y="600"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text49">
+    • 有界上下文划分
+  </text>
+  <text
+     x="410"
+     y="615"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text50">
+    • 微服务边界定义
+  </text>
+  <text
+     x="410"
+     y="630"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text51">
+    • 防腐层设计
+  </text>
+  <text
+     x="410"
+     y="645"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text52">
+    • 集成策略制定
+  </text>
+  <rect
+     x="720"
+     y="560"
+     width="300"
+     height="90"
+     fill="#FFF3E0"
+     stroke="#FF9800"
+     stroke-width="1"
+     rx="8"
+     id="rect52" />
+  <text
+     x="730"
+     y="580"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#E65100"
+     id="text53">
+    商业模式设计
+  </text>
+  <text
+     x="730"
+     y="600"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text54">
+    • 收费模式设计
+  </text>
+  <text
+     x="730"
+     y="615"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text55">
+    • 成本结构优化
+  </text>
+  <text
+     x="730"
+     y="630"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text56">
+    • 盈利点识别
+  </text>
+  <text
+     x="730"
+     y="645"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text57">
+    • 扩展策略规划
+  </text>
+  <rect
+     x="1040"
+     y="560"
+     width="280"
+     height="90"
+     fill="#F3E5F5"
+     stroke="#9C27B0"
+     stroke-width="1"
+     rx="8"
+     id="rect57" />
+  <text
+     x="1050"
+     y="580"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#7B1FA2"
+     id="text58">
+    交付策略制定
+  </text>
+  <text
+     x="1050"
+     y="600"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text59">
+    • MVP功能定义
+  </text>
+  <text
+     x="1050"
+     y="615"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text60">
+    • 迭代计划制定
+  </text>
+  <text
+     x="1050"
+     y="630"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text61">
+    • 里程碑设定
+  </text>
+  <text
+     x="1050"
+     y="645"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text62">
+    • 风险控制点
+  </text>
+  <!-- 第三阶段：敏捷实现交付 -->
+  <rect
+     x="50"
+     y="680"
+     width="1300"
+     height="140"
+     fill="#E8EAF6"
+     stroke="#3F51B5"
+     stroke-width="2"
+     rx="10"
+     filter="url(#shadow)"
+     id="rect62" />
+  <text
+     x="70"
+     y="705"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="#1A237E"
+     id="text63">
+    阶段三：敏捷实现交付 - 快速响应客户需求变化
+  </text>
+  <rect
+     x="80"
+     y="720"
+     width="300"
+     height="90"
+     fill="#E3F2FD"
+     stroke="#2196F3"
+     stroke-width="1"
+     rx="8"
+     id="rect63" />
+  <text
+     x="90"
+     y="740"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#1565C0"
+     id="text64">
+    分层架构实现
+  </text>
+  <text
+     x="90"
+     y="760"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text65">
+    • 领域层核心逻辑
+  </text>
+  <text
+     x="90"
+     y="775"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text66">
+    • 应用服务编排
+  </text>
+  <text
+     x="90"
+     y="790"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text67">
+    • 基础设施适配
+  </text>
+  <text
+     x="90"
+     y="805"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text68">
+    • 接口层实现
+  </text>
+  <rect
+     x="400"
+     y="720"
+     width="300"
+     height="90"
+     fill="#F3E5F5"
+     stroke="#9C27B0"
+     stroke-width="1"
+     rx="8"
+     id="rect68" />
+  <text
+     x="410"
+     y="740"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#7B1FA2"
+     id="text69">
+    质量保证体系
+  </text>
+  <text
+     x="410"
+     y="760"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text70">
+    • 领域模型测试
+  </text>
+  <text
+     x="410"
+     y="775"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text71">
+    • 集成测试覆盖
+  </text>
+  <text
+     x="410"
+     y="790"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text72">
+    • 业务场景验证
+  </text>
+  <text
+     x="410"
+     y="805"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text73">
+    • 性能压力测试
+  </text>
+  <rect
+     x="720"
+     y="720"
+     width="300"
+     height="90"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="1"
+     rx="8"
+     id="rect73" />
+  <text
+     x="730"
+     y="740"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#2E7D32"
+     id="text74">
+    DevOps自动化
+  </text>
+  <text
+     x="730"
+     y="760"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text75">
+    • CI/CD流水线
+  </text>
+  <text
+     x="730"
+     y="775"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text76">
+    • 自动化部署
+  </text>
+  <text
+     x="730"
+     y="790"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text77">
+    • 监控告警体系
+  </text>
+  <text
+     x="730"
+     y="805"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text78">
+    • 日志分析平台
+  </text>
+  <rect
+     x="1040"
+     y="720"
+     width="280"
+     height="90"
+     fill="#FFF3E0"
+     stroke="#FF9800"
+     stroke-width="1"
+     rx="8"
+     id="rect78" />
+  <text
+     x="1050"
+     y="740"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#E65100"
+     id="text79">
+    客户价值交付
+  </text>
+  <text
+     x="1050"
+     y="760"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text80">
+    • 用户培训支持
+  </text>
+  <text
+     x="1050"
+     y="775"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text81">
+    • 上线技术支持
+  </text>
+  <text
+     x="1050"
+     y="790"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text82">
+    • 业务效果跟踪
+  </text>
+  <text
+     x="1050"
+     y="805"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text83">
+    • 问题快速响应
+  </text>
+  <!-- 第四阶段：价值验证优化 -->
+  <rect
+     x="50"
+     y="840"
+     width="1300"
+     height="140"
+     fill="#FCE4EC"
+     stroke="#E91E63"
+     stroke-width="2"
+     rx="10"
+     filter="url(#shadow)"
+     id="rect83" />
+  <text
+     x="70"
+     y="865"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="#AD1457"
+     id="text84">
+    阶段四：价值验证优化 - 持续创造更大商业价值
+  </text>
+  <rect
+     x="80"
+     y="880"
+     width="300"
+     height="90"
+     fill="#FFEBEE"
+     stroke="#E91E63"
+     stroke-width="1"
+     rx="8"
+     id="rect84" />
+  <text
+     x="90"
+     y="900"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#C2185B"
+     id="text85">
+    业务效果评估
+  </text>
+  <text
+     x="90"
+     y="920"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text86">
+    • 关键指标监控
+  </text>
+  <text
+     x="90"
+     y="935"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text87">
+    • 用户满意度调研
+  </text>
+  <text
+     x="90"
+     y="950"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text88">
+    • 业务流程改善
+  </text>
+  <text
+     x="90"
+     y="965"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text89">
+    • 效率提升量化
+  </text>
+  <rect
+     x="400"
+     y="880"
+     width="300"
+     height="90"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="1"
+     rx="8"
+     id="rect89" />
+  <text
+     x="410"
+     y="900"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#2E7D32"
+     id="text90">
+    商业收益分析
+  </text>
+  <text
+     x="410"
+     y="920"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text91">
+    • 实际ROI计算
+  </text>
+  <text
+     x="410"
+     y="935"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text92">
+    • 成本效益对比
+  </text>
+  <text
+     x="410"
+     y="950"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text93">
+    • 盈利模式验证
+  </text>
+  <text
+     x="410"
+     y="965"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text94">
+    • 市场反馈收集
+  </text>
+  <rect
+     x="720"
+     y="880"
+     width="300"
+     height="90"
+     fill="#E3F2FD"
+     stroke="#2196F3"
+     stroke-width="1"
+     rx="8"
+     id="rect94" />
+  <text
+     x="730"
+     y="900"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#1565C0"
+     id="text95">
+    持续改进优化
+  </text>
+  <text
+     x="730"
+     y="920"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text96">
+    • 功能迭代升级
+  </text>
+  <text
+     x="730"
+     y="935"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text97">
+    • 架构演进优化
+  </text>
+  <text
+     x="730"
+     y="950"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text98">
+    • 性能持续调优
+  </text>
+  <text
+     x="730"
+     y="965"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text99">
+    • 用户体验提升
+  </text>
+  <rect
+     x="1040"
+     y="880"
+     width="280"
+     height="90"
+     fill="#FFF3E0"
+     stroke="#FF9800"
+     stroke-width="1"
+     rx="8"
+     id="rect99" />
+  <text
+     x="1050"
+     y="900"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     font-weight="bold"
+     fill="#E65100"
+     id="text100">
+    规模化扩展
+  </text>
+  <text
+     x="1050"
+     y="920"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text101">
+    • 市场推广策略
+  </text>
+  <text
+     x="1050"
+     y="935"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text102">
+    • 产品线扩展
+  </text>
+  <text
+     x="1050"
+     y="950"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text103">
+    • 生态合作伙伴
+  </text>
+  <text
+     x="1050"
+     y="965"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="11"
+     fill="#333"
+     id="text104">
+    • 国际化布局
+  </text>
+  <!-- DDD商业模式成功要素 -->
+  <rect
+     x="50"
+     y="1000"
+     width="1300"
+     height="120"
+     fill="#F5F5F5"
+     stroke="#757575"
+     stroke-width="2"
+     rx="10"
+     filter="url(#shadow)"
+     id="rect104" />
+  <text
+     x="700"
+     y="1025"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="18"
+     font-weight="bold"
+     fill="#424242"
+     text-anchor="middle"
+     id="text105">
+    DDD商业模式成功的关键要素
+  </text>
+  <rect
+     x="80"
+     y="1040"
+     width="220"
+     height="70"
+     fill="#FFEBEE"
+     stroke="#E91E63"
+     stroke-width="1"
+     rx="8"
+     id="rect105" />
+  <text
+     x="90"
+     y="1060"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     font-weight="bold"
+     fill="#C2185B"
+     id="text106">
+    业务洞察力
+  </text>
+  <text
+     x="90"
+     y="1080"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text107">
+    • 深度理解客户需求
+  </text>
+  <text
+     x="90"
+     y="1095"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text108">
+    • 敏锐捕捉市场变化
+  </text>
+  <rect
+     x="320"
+     y="1040"
+     width="220"
+     height="70"
+     fill="#E3F2FD"
+     stroke="#2196F3"
+     stroke-width="1"
+     rx="8"
+     id="rect108" />
+  <text
+     x="330"
+     y="1060"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     font-weight="bold"
+     fill="#1565C0"
+     id="text109">
+    技术架构能力
+  </text>
+  <text
+     x="330"
+     y="1080"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text110">
+    • DDD实践经验丰富
+  </text>
+  <text
+     x="330"
+     y="1095"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text111">
+    • 微服务架构精通
+  </text>
+  <rect
+     x="560"
+     y="1040"
+     width="220"
+     height="70"
+     fill="#F3E5F5"
+     stroke="#9C27B0"
+     stroke-width="1"
+     rx="8"
+     id="rect111" />
+  <text
+     x="570"
+     y="1060"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     font-weight="bold"
+     fill="#7B1FA2"
+     id="text112">
+    团队协作文化
+  </text>
+  <text
+     x="570"
+     y="1080"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text113">
+    • 跨职能团队协作
+  </text>
+  <text
+     x="570"
+     y="1095"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text114">
+    • 持续学习改进
+  </text>
+  <rect
+     x="800"
+     y="1040"
+     width="220"
+     height="70"
+     fill="#E8F5E8"
+     stroke="#4CAF50"
+     stroke-width="1"
+     rx="8"
+     id="rect114" />
+  <text
+     x="810"
+     y="1060"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     font-weight="bold"
+     fill="#2E7D32"
+     id="text115">
+    敏捷交付能力
+  </text>
+  <text
+     x="810"
+     y="1080"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text116">
+    • 快速响应变化
+  </text>
+  <text
+     x="810"
+     y="1095"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text117">
+    • 持续价值交付
+  </text>
+  <rect
+     x="1040"
+     y="1040"
+     width="280"
+     height="70"
+     fill="#FFF3E0"
+     stroke="#FF9800"
+     stroke-width="1"
+     rx="8"
+     id="rect117" />
+  <text
+     x="1050"
+     y="1060"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="12"
+     font-weight="bold"
+     fill="#E65100"
+     id="text118">
+    商业思维
+  </text>
+  <text
+     x="1050"
+     y="1080"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text119">
+    • 价值导向决策
+  </text>
+  <text
+     x="1050"
+     y="1095"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="10"
+     fill="#333"
+     id="text120">
+    • 投资回报意识
+  </text>
+  <!-- 流程箭头 -->
+  <defs
+     id="defs121">
+    <marker
+       id="arrowhead"
+       markerWidth="10"
+       markerHeight="7"
+       refX="9"
+       refY="3.5"
+       orient="auto">
+      <polygon
+         points="0 0, 10 3.5, 0 7"
+         fill="#666"
+         id="polygon120" />
+    </marker>
+    <marker
+       id="bigArrow"
+       markerWidth="15"
+       markerHeight="10"
+       refX="13"
+       refY="5"
+       orient="auto">
+      <polygon
+         points="0 0, 15 5, 0 10"
+         fill="#E91E63"
+         id="polygon121" />
+    </marker>
+  </defs>
+  <!-- 商业逻辑箭头 -->
+  <line
+     x1="460"
+     y1="200"
+     x2="510"
+     y2="200"
+     stroke="#E91E63"
+     stroke-width="4"
+     marker-end="url(#bigArrow)"
+     id="line121" />
+  <line
+     x1="890"
+     y1="200"
+     x2="940"
+     y2="200"
+     stroke="#E91E63"
+     stroke-width="4"
+     marker-end="url(#bigArrow)"
+     id="line122" />
+  <!-- 垂直流程箭头 -->
+  <line
+     x1="700"
+     y1="240"
+     x2="700"
+     y2="260"
+     stroke="#666"
+     stroke-width="3"
+     marker-end="url(#arrowhead)"
+     id="line123" />
+  <line
+     x1="700"
+     y1="340"
+     x2="700"
+     y2="360"
+     stroke="#666"
+     stroke-width="3"
+     marker-end="url(#arrowhead)"
+     id="line124" />
+  <line
+     x1="700"
+     y1="500"
+     x2="700"
+     y2="520"
+     stroke="#666"
+     stroke-width="3"
+     marker-end="url(#arrowhead)"
+     id="line125" />
+  <line
+     x1="700"
+     y1="660"
+     x2="700"
+     y2="680"
+     stroke="#666"
+     stroke-width="3"
+     marker-end="url(#arrowhead)"
+     id="line126" />
+  <line
+     x1="700"
+     y1="820"
+     x2="700"
+     y2="840"
+     stroke="#666"
+     stroke-width="3"
+     marker-end="url(#arrowhead)"
+     id="line127" />
+  <!-- 反馈循环箭头 -->
+  <!-- 底部总结 -->
+  <rect
+     x="50"
+     y="1140"
+     width="1300"
+     height="120"
+     fill="url(#businessGradient)"
+     rx="15"
+     filter="url(#shadow)"
+     id="rect127" />
+  <text
+     x="700"
+     y="1170"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="20"
+     font-weight="bold"
+     fill="white"
+     text-anchor="middle"
+     id="text128">
+    DDD商业模式的核心竞争优势
+  </text>
+  <text
+     x="700"
+     y="1200"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="16"
+     fill="white"
+     text-anchor="middle"
+     id="text129">
+    让技术真正服务于商业价值创造，让软件系统成为业务创新的强大引擎
+  </text>
+  <text
+     x="700"
+     y="1225"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     fill="white"
+     text-anchor="middle"
+     id="text130">
+    通过深度理解客户需求，构建高度契合业务的技术解决方案
+  </text>
+  <text
+     x="700"
+     y="1245"
+     font-family="Microsoft YaHei, Arial, sans-serif"
+     font-size="14"
+     fill="white"
+     text-anchor="middle"
+     id="text131">
+    实现客户价值最大化、开发效率最优化、商业回报最大化的三重目标
+  </text>
+  <!-- 版权信息 -->
+  <text
+     x="700"
+     y="1300"
+     font-family="'Microsoft YaHei', Arial, sans-serif"
+     font-size="12px"
+     fill="#999999"
+     text-anchor="middle"
+     id="text132">作者：伍志勇 | 创建时间：2025年9月16日 | DDD工作流程图</text>
+</svg>
