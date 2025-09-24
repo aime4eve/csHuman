@@ -94,3 +94,10 @@ $RECYCLE.BIN/
 # Deployment and production files
 deployment-check.txt
 production-deployment.txt
+
+# Large files that should not be in Git
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+*.7z
