@@ -22,3 +22,75 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.lora
+
+# AI Models and Training Data
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.model
+trainer_output/
+lora_adapters/
+quick_lora_output/
+incremental_lora_output/
+vector_store/
+simulated_cache/
+evaluation_results/
+
+# Cache and temporary files
+.cache/
+*.tmp
+*.temp
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+.dockerignore
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Deployment and production files
+deployment-check.txt
+production-deployment.txt

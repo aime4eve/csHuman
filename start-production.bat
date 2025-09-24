@@ -1,0 +1,3 @@
+@echo off
+echo Starting production server...
+node server.js

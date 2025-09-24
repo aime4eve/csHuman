@@ -203,9 +203,44 @@ deploy_docker() {
         "prod")
             docker-compose -f docker-compose.prod.yml up -d
             ;;
+        "prod-cluster")
+            deploy_prod_cluster
+            ;;
     esac
     
     log_success "Docker部署完成"
+}
+
+# 生产集群环境部署
+deploy_prod_cluster() {
+    log_info "部署到生产集群环境..."
+    
+    # 停止现有服务
+    log_info "停止现有服务..."
+    docker-compose -f docker-compose.prod.yml down
+    
+    # 清理系统
+    log_info "清理系统资源..."
+    docker system prune -f
+    docker volume prune -f
+    
+    # 构建所有镜像
+    log_info "构建所有服务镜像..."
+    docker-compose -f docker-compose.prod.yml build --no-cache
+    
+    # 启动生产集群服务
+    log_info "启动生产集群服务..."
+    docker-compose -f docker-compose.prod.yml up -d
+    
+    # 等待服务启动
+    log_info "等待服务启动..."
+    sleep 60
+    
+    log_success "生产集群环境部署完成！"
+    log_info "负载均衡器地址：http://localhost:80"
+    log_info "HTTPS访问地址：https://localhost:443"
+    log_info "监控面板：http://localhost:3000 (Grafana)"
+    log_info "指标收集：http://localhost:9090 (Prometheus)"
 }
 
 # 本地部署
@@ -230,19 +265,110 @@ deploy_local() {
     fi
 }
 
+# 服务健康检查
+check_services() {
+    log_info "检查服务健康状态..."
+    
+    local services=("frontend:5173" "ai-service:8000" "postgres:5432" "redis:6379")
+    local failed_services=()
+    
+    for service in "${services[@]}"; do
+        local name=${service%:*}
+        local port=${service#*:}
+        
+        if check_service_health "$name" "$port"; then
+            log_success "$name 服务运行正常"
+        else
+            log_error "$name 服务异常"
+            failed_services+=("$name")
+        fi
+    done
+    
+    if [ ${#failed_services[@]} -eq 0 ]; then
+        log_success "所有服务运行正常"
+        return 0
+    else
+        log_error "以下服务异常: ${failed_services[*]}"
+        return 1
+    fi
+}
+
+# 集群服务健康检查
+check_cluster_services() {
+    log_info "检查集群服务健康状态..."
+    
+    local services=(
+        "nginx-lb:80:HTTP负载均衡器"
+        "frontend-1:80:前端服务1"
+        "frontend-2:80:前端服务2"
+        "ai-service-1:8000:AI服务1"
+        "ai-service-2:8000:AI服务2"
+        "postgres:5432:PostgreSQL数据库"
+        "redis:6379:Redis缓存"
+        "prometheus:9090:Prometheus监控"
+        "grafana:3000:Grafana面板"
+    )
+    
+    local failed_services=()
+    
+    for service in "${services[@]}"; do
+        local name=${service%%:*}
+        local port=$(echo $service | cut -d':' -f2)
+        local desc=$(echo $service | cut -d':' -f3)
+        
+        if check_service_health "$name" "$port"; then
+            log_success "$desc 运行正常"
+        else
+            log_error "$desc 异常"
+            failed_services+=("$desc")
+        fi
+    done
+    
+    if [ ${#failed_services[@]} -eq 0 ]; then
+        log_success "所有集群服务运行正常"
+        return 0
+    else
+        log_error "以下服务异常: ${failed_services[*]}"
+        return 1
+    fi
+}
+
+# 单个服务健康检查
+check_service_health() {
+    local service_name=$1
+    local port=$2
+    local max_attempts=30
+    local attempt=1
+    
+    while [ $attempt -le $max_attempts ]; do
+        if docker-compose ps | grep -q "$service_name.*Up"; then
+            if nc -z localhost "$port" 2>/dev/null; then
+                return 0
+            fi
+        fi
+        
+        log_info "等待 $service_name 服务启动... ($attempt/$max_attempts)"
+        sleep 2
+        ((attempt++))
+    done
+    
+    return 1
+}
+
 # 部署后检查
 post_deploy_check() {
     log_info "执行部署后检查..."
     
-    # 等待服务启动
-    sleep 5
+    # 检查Docker服务状态
+    log_info "检查Docker服务状态..."
+    docker-compose ps
     
-    # 健康检查
-    if curl -f http://localhost/health &> /dev/null; then
-        log_success "服务健康检查通过"
-    else
-        log_warning "服务健康检查失败，请检查服务状态"
-    fi
+    # 检查服务健康状态
+    check_services
+    
+    # 显示服务日志摘要
+    log_info "服务日志摘要："
+    docker-compose logs --tail=5 --timestamps
     
     # 显示服务信息
     case $ENVIRONMENT in
@@ -256,6 +382,8 @@ post_deploy_check() {
             log_info "生产环境访问地址: http://localhost"
             ;;
     esac
+    
+    log_success "部署后检查完成！"
 }
 
 # 主函数
@@ -295,7 +423,7 @@ main() {
                 NO_CACHE=true
                 shift
                 ;;
-            dev|test|prod)
+            dev|test|prod|prod-cluster)
                 ENVIRONMENT=$1
                 shift
                 ;;

@@ -34,6 +34,34 @@ services:
       retries: 3
       start_period: 40s
 
+  # AI服务 (FastAPI + Python)
+  ai-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai
+    container_name: knowledge-ai-service
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./app:/app
+      - ./vector_store:/app/vector_store
+      - ./lora_adapters:/app/lora_adapters
+    depends_on:
+      - redis
+    networks:
+      - knowledge-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
   # 后端API服务 (占位符，实际需要根据后端配置调整)
   backend:
     image: openjdk:17-jdk-alpine
@@ -47,15 +75,18 @@ services:
       - SPRING_DATASOURCE_PASSWORD=knowledge_pass
       - SPRING_REDIS_HOST=redis
       - SPRING_REDIS_PORT=6379
+      - AI_SERVICE_URL=http://ai-service:8000
     depends_on:
       - postgres
       - redis
+      - ai-service
     networks:
       - knowledge-network
     restart: unless-stopped
     command: |
       sh -c '
         echo "Backend service placeholder - 需要实际的Spring Boot应用"
+        echo "AI服务地址: http://ai-service:8000"
         sleep infinity
       '
 
